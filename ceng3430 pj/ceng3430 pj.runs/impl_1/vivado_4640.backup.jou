@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Thu May  9 15:21:02 2024
+# Process ID: 4640
+# Current directory: C:/Users/Student/Desktop/ceng3430/ceng3430 pj/ceng3430 pj.runs/impl_1
+# Command line: vivado.exe -log vga_driver.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source vga_driver.tcl -notrace
+# Log file: C:/Users/Student/Desktop/ceng3430/ceng3430 pj/ceng3430 pj.runs/impl_1/vga_driver.vdi
+# Journal file: C:/Users/Student/Desktop/ceng3430/ceng3430 pj/ceng3430 pj.runs/impl_1\vivado.jou
+# Running On: 102-039, OS: Windows, CPU Frequency: 2112 MHz, CPU Physical cores: 16, Host memory: 16833 MB
+#-----------------------------------------------------------
+source vga_driver.tcl -notrace
