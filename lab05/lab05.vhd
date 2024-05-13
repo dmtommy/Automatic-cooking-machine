@@ -1,6 +1,7 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+USE IEEE.NUMERIC_STD.ALL;
 ENTITY vga_driver IS
 	PORT (
 		clk, BTNU, BTND, BTNL, BTNR, BTNC : IN std_logic;
@@ -48,6 +49,11 @@ ARCHITECTURE vga_driver_arch OF vga_driver IS
 	SIGNAL CUISINE_2_TIME : INTEGER := 300;
 	SIGNAL CUISINE_3_TIME : INTEGER := 600;
 	SIGNAL CUISINE_4_TIME : INTEGER := 480;
+  SIGNAL CUISINE_4_TIME : INTEGER := 480;
+  SIGNAL DIGIT1 : INTEGER := 9;
+  SIGNAL DIGIT2 : INTEGER := 9;
+  SIGNAL DIGIT3 : INTEGER := 9;
+  SIGNAL DIGIT4 : INTEGER := 9;
 	TYPE d0_ARRAY IS ARRAY (0 to 239) OF bit_vector(0 to 79);
     CONSTANT d0: d0_ARRAY:=(
     "00000000000000000000000000000000000000000000000000000000000000000000000000000000",
@@ -4168,6 +4174,7 @@ BEGIN
 				-- ? generate RGB signals for 1024x600 display area
 				data_output_proc : PROCESS (hcount, vcount, CUISINE_CHOICE, CUISINE_1_TIME, CUISINE_2_TIME, CUISINE_3_TIME, CUISINE_4_TIME)
 				BEGIN
+          IF(CUISINE_CHOICE = 1) THEN
 					IF ((hcount >= H_START AND hcount < H_END) AND
 					 (vcount >= V_START AND vcount < V_END)) THEN
 						-- Display Area (draw the triangle here)
@@ -4406,18 +4413,46 @@ BEGIN
                           IF BTNC'event and BTNC = '1' THEN
                             IF (CUISINE_CHOICE = 1 AND CUISINE_1_TIME > 0) THEN 
                               CUISINE_1_TIME <= CUISINE_1_TIME - 1;
+                              DIGIT1 <= (CUISINE_1_TIME / 60) / 10;
+                              DIGIT2 <= (CUISINE_1_TIME / 60) % 10;
+                              DIGIT3 <= (CUISINE_1_TIME % 60) / 10;
+                              DIGIT4 <= (CUISINE_1_TIME % 60) % 10;
                             ELSIF (CUISINE_CHOICE = 1 AND CUISINE_1_TIME = 0) THEN 
                               CUISINE_1_TIME <= 0;
+                              DIGIT1 <= 0;
+                              DIGIT2 <= 0;
+                              DIGIT3 <= 0;
+                              DIGIT4 <= 0;
                             ELSIF (CUISINE_CHOICE = 2 AND CUISINE_2_TIME > 0) THEN 
                               CUISINE_2_TIME <= CUISINE_2_TIME - 1;
+                              DIGIT1 <= (CUISINE_2_TIME / 60) / 10;
+                              DIGIT2 <= (CUISINE_2_TIME / 60) % 10;
+                              DIGIT3 <= (CUISINE_2_TIME % 60) / 10;
+                              DIGIT4 <= (CUISINE_2_TIME % 60) % 10;
                             ELSIF (CUISINE_CHOICE = 2 AND CUISINE_2_TIME = 0) THEN 
                               CUISINE_2_TIME <= 0;
+                              DIGIT1 <= 0;
+                              DIGIT2 <= 0;
+                              DIGIT3 <= 0;
+                              DIGIT4 <= 0;
                             ELSIF (CUISINE_CHOICE = 3 AND CUISINE_3_TIME > 0) THEN 
                               CUISINE_3_TIME <= CUISINE_3_TIME - 1;
+                              DIGIT1 <= (CUISINE_3_TIME / 60) / 10;
+                              DIGIT2 <= (CUISINE_3_TIME / 60) % 10;
+                              DIGIT3 <= (CUISINE_3_TIME % 60) / 10;
+                              DIGIT4 <= (CUISINE_3_TIME % 60) % 10;
                             ELSIF (CUISINE_CHOICE = 3 AND CUISINE_3_TIME = 0) THEN 
                               CUISINE_3_TIME <= 0;
+                              DIGIT1 <= 0;
+                              DIGIT2 <= 0;
+                              DIGIT3 <= 0;
+                              DIGIT4 <= 0;
                             ELSIF (CUISINE_CHOICE = 4 AND CUISINE_4_TIME > 0) THEN 
                               CUISINE_4_TIME <= CUISINE_4_TIME - 1;
+                              DIGIT1 <= (CUISINE_4_TIME / 60) / 10;
+                              DIGIT2 <= (CUISINE_4_TIME / 60) % 10;
+                              DIGIT3 <= (CUISINE_4_TIME % 60) / 10;
+                              DIGIT4 <= (CUISINE_4_TIME % 60) % 10;
                             ELSIF (CUISINE_CHOICE = 4 AND CUISINE_4_TIME = 0) THEN 
                               CUISINE_4_TIME <= 0;
                             END IF;  
